@@ -1,18 +1,25 @@
  body{
- 	padding-top: 10px;
-    padding-bottom: 20px;
-    margin-right: auto;
-    margin-left: auto;
+ 	padding: 0;
+    	margin-right: auto;
+    	margin-left: auto;
  }
 
 .container-all {
-	width: 68%;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Open Sans', sans-serif;
 	margin-right: auto;
-    margin-left: auto;
+    	margin-left: auto;
 }
 
 .jumbotron {
-    padding: 48px;
+	background-color: rgb(74, 118, 168) !important;
+	color: white;
+    	padding: 48px;
+}
+
+.jumbotron h1 {
+	color: white;
+	font-weight: 100;
 }
 
 .contents {
@@ -59,3 +66,22 @@
 	padding-left: 190px;
 	padding-right: 50px;
 }
+
+#button-container {
+	margin-left: 30%;
+}
+
+#button-container button {
+	font-size: 16px;
+}
+
+.thumbnail:hover {
+	box-shadow: 1px 14px 45px rgba(0, 0, 0, 0.3) !important;
+}
+
+/*img:hover {
+	-ms-transform: scale(1.1); 
+    	-webkit-transform: scale(1.1); 
+    	transform: scale(1.1);
+    	transition: all ease-in-out 0.4s;
+};*/

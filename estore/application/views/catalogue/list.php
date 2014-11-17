@@ -14,7 +14,7 @@
 						<h4><?= $product->name?></h4>
 						<p>$<?= number_format($product->price, 2)?></p>
 					</div>
-			    	<div class="btn-group">
+			    	<div class="btn-group" id="button-container">
 					<button type="button" class="btn btn-xs btn-primary btn-group-sm"> 
 					Add to Cart
 					</button>
