@@ -4,18 +4,18 @@ function emailHelper($obj, $user_email, $order_id) {
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-			'smtp_user' => '', //Change the email account full name
-			'smtp_pass' => '',                      //Change to email password
+			'smtp_user' => 'baseballerstoreinfo@gmail.com', //Change the email account full name
+			'smtp_pass' => 'TimHortons',                      //Change to email password
 			'mailtype'  => 'html',
 			'charset'   => 'iso-8859-1'
 	);
-	
+
 	$obj->email->initialize($config);
-	
+
 	//Load the email models
 	$obj->load->library('email');
 	$obj->email->set_newline("\r\n");
-	
+
 	//Get the email content
 	$obj->load->model('order_model');
 	$obj->load->model('product_model');
@@ -24,7 +24,7 @@ function emailHelper($obj, $user_email, $order_id) {
 	$all_products = [];
 
 	foreach ($order_items as $item) {
-			$product = $obj->product_model->get($item['product_id']); 
+			$product = $obj->product_model->get($item['product_id']);
 			$all_products[] = array(
 					'name' => $product->name,
 					'price' => $product->price,
@@ -34,11 +34,11 @@ function emailHelper($obj, $user_email, $order_id) {
 	$data['orders']=$orders;
 	$data['allproducts']=$all_products;
 	$email = $obj->load->view('email/email.php',$data,TRUE);
-	
+
 	//Send the emails
-	$obj->email->from('admin@baseballcards.com', 'Baseball Card Administrator'); 
+	$obj->email->from('admin@baseballcards.com', 'Baseball Card Administrator');
 	$obj->email->to($user_email);
 	$obj->email->subject('Order Confirmation');
-	$obj->email->message($email);		
+	$obj->email->message($email);
 	$obj->email->send();
 }
