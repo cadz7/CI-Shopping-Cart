@@ -10,7 +10,7 @@ $(document).ready(function(){
 	else {
 		shoppingCart = [];
 	}
-	
+
 	var changedItems =[];
 
 	/*	Removing items   */
@@ -18,7 +18,7 @@ $(document).ready(function(){
 		for( var i = 0; i < shoppingCart.length; i++) {
 			if (shoppingCart[i].id == parseInt(id)) {
 				shoppingCart.splice(i,1);
-			}	
+			}
 		}
 		deleteCookie('shoppingCart');
 		setCookie('shoppingCart', JSON.stringify(shoppingCart));
@@ -36,9 +36,9 @@ $(document).ready(function(){
 		}
 		setCookie('shoppingCart', JSON.stringify(shoppingCart));
 		$('#formshoppingcart').attr('value', JSON.stringify(shoppingCart));
-		$('#formtotal').attr('value', getTotal(shoppingCart)); 
+		$('#formtotal').attr('value', getTotal(shoppingCart));
 	}
-	
+
 	function addToChanged (item_id, item_quantity) {
 		for (var i=0; i < changedItems.length; i++) {
 			if (changedItems[i].id == item_id) {
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			}
 		}
 	}
-	
+
 	function htmlEncode(value){
 		return $('<div/>').text(value).html();
 	}
@@ -84,9 +84,9 @@ $(document).ready(function(){
 		tablestr = "<th></th><th>Name</th><th>Price</th><th>Quantity</th><th></th>";
 		for (var i=0; i < shoppingCart.length; i++) {
 			price = parseFloat(shoppingCart[i].price);
-			tablestr += "<tr><td><img class = 'cartphoto' src='" + "<?= base_url() ?>" +"images/product/"; 
+			tablestr += "<tr><td><img class = 'cartphoto' src='" + "<?= base_url() ?>" +"images/product/";
 			tablestr += shoppingCart[i].photo + "'></td>";
-			tablestr += "<td>" + htmlEncode(shoppingCart[i].name) + "</td>"; 
+			tablestr += "<td>" + htmlEncode(shoppingCart[i].name) + "</td>";
 			tablestr += "<td>$" + price.toFixed(2) + "</td>";
 			tablestr += '<td> <div class="form-group">';
 			tablestr += '<input type="text" pattern="\\d+" class="form-control quantity" ';
@@ -95,7 +95,7 @@ $(document).ready(function(){
 			tablestr += 'required= "" value ="'+ htmlEncode(shoppingCart[i].quantity) +'">';
 			tablestr += '<div class="inventoryproductid">' + shoppingCart[i].id + '</div>';
 			tablestr += '</div>' + '</td>';
-		    tablestr += '<td><button type="button" class="btn btn-xs btn-danger item">' + 
+		    tablestr += '<td><button type="button" class="btn btn-xs btn-danger item">' +
 	 		'Remove</button></td></tr>';
 		}
 		tablestr += '<tr>';
@@ -109,8 +109,8 @@ $(document).ready(function(){
 
 	function noItemsMsg() {
 		$('.inventory').html('<div class="alert alert-info" role="alert"><h3>Hey, you forgot something!</h3>' +
-		'<p><b>Unfortunately, there are currently no items in your cart. Go back <a href="'+ 
-		'<?= base_url()?>' + '">here</a> and' + 
+		'<p><b>Unfortunately, there are currently no items in your cart. Go back <a href="'+
+		'<?= base_url()?>' + '">here</a> and' +
 		' make a selection from the catalogue, and when you\'re ready to place an order, come back.</b></div>');
 	}
 
@@ -125,13 +125,13 @@ $(document).ready(function(){
 		$('.inventory').html(tableStr);
 
 		//Set up for checkout form
-		checkoutForm = '<?php 	$attributes = array('role' => 'form'); 
+		checkoutForm = '<?php 	$attributes = array('role' => 'form');
 								echo form_open("orders/checkout", $attributes); ?>';
 		checkoutForm += '<div class="panel panel-default">';
 		checkoutForm += '<div class="panel-heading"><h3>Checkout</h3></div>';
 		checkoutForm += '<p><div class="form-group credit">'
 		checkoutForm +=	'<label for="creditnumber">Credit Card Number</label>';
-		checkoutForm += '<?php 
+		checkoutForm += '<?php
 				$creditcardnumber_type = array('type'=>'text', 'class'=>'form-control', 'pattern'=>'[0-9]{4}[-][0-9]{4}[-][0-9]{4}[-][0-9]{4}',
 				'oninvalid'=>"setCustomValidity(\'Please enter a credit card number with 16 digits\')",
 				'onchange'=>"try{setCustomValidity(\'\')}catch(e){}",
@@ -139,7 +139,7 @@ $(document).ready(function(){
 				echo form_input($creditcardnumber_type);
 		?>';
 		checkoutForm +=	'<br/><label for="creditdate">Expiry Date (MM/YY)</label>';
-		checkoutForm += '<?php 
+		checkoutForm += '<?php
 				$creditcardexpiry_type = array('type'=>'text', 'class'=>'form-control', 'pattern'=>'[0-9]{2}[/][0-9]{2}',
 				'oninvalid'=>"setCustomValidity(\'The expiry date is not formatted correctly\')",
 				'onchange'=>"try{setCustomValidity(\'\')}catch(e){}",
@@ -238,40 +238,40 @@ $(document).ready(function(){
 	});
 	$('#formshoppingcart').attr('value', JSON.stringify(shoppingCart));
 	$('#formtotal').attr('value', getTotal(shoppingCart));
-	<?php 
+	<?php
 	if(isset($successmsg)) {
 	?>
 	$('.inventory').hide();
 	$('.checkout').hide();
 	$('.alert.alert-warning').hide();
 	$('.alert.alert-info').hide();
-	shoppingCart = [];		
+	shoppingCart = [];
 	setCookie('shoppingCart', JSON.stringify(shoppingCart));
 	$('#shoppingcart').find('.badge').html(shoppingCart.length);
-	<?php 
+	<?php
 	}
 	?>
 });
 
 
 </script>
-<?php 
+<?php
 if(isset($successmsg)) {
 ?>
 <div class="alert alert-success" role="alert">
 <h3>Success!</h3>
 <p><b><?= $successmsg ?></b>
-</div>	
+</div>
 <?php
 }
-if($login == 'anon') {
+if(defined($login) and $login == 'anon') {
 ?>
 <div class="alert alert-warning" role="alert">
 <h3>Oops!</h3>
 <p><b>You haven't logged in, or you don't have an account with us. Please go
 <a href= '<?= base_url()?>main/createuser'>here</a> and create a new user account, or login above.</b>
 </div>
-<?php 
+<?php
 }
 if(isset($checkouterror) && $checkouterror){
 ?>
@@ -279,17 +279,17 @@ if(isset($checkouterror) && $checkouterror){
 <?= $checkouterror ?>
 </div>
 
-<?php 
+<?php
 }
 ?>
 
 <div class="inventory"></div>
 
 <?php
-if($login != 'anon') {
+if(defined($login) and $login != 'anon') {
 ?>
 
 <div class="checkout"></div>
-<?php 
+<?php
 }
 ?>
