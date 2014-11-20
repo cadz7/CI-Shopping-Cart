@@ -8,9 +8,9 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand"><b>Baseball Cards Shop</b></div> 
+			<div class="navbar-brand"><b>Estore</b></div> 
 			<div class="navbar-brand">
-			<img alt="Brand" class="img-responsive" src="<?= base_url(); ?>/images/glyphicons_311_baseball.png">
+			<img alt="Brand" class="img-responsive" src="http://simpleicon.com/wp-content/uploads/baseball.png" width="24" height="24">
 			</div>
 		</div>
 
@@ -28,7 +28,6 @@
             <li><?php echo anchor('admin/editProduct','Edit Products') ?></li>
             <li><?php echo anchor('admin/getOrders','Delete Orders') ?></li>
             <li><?php echo anchor('admin/getUsers','Remove Users') ?></li>
-            <li><?php echo anchor('email/sendEmail/1','Email Test') ?></li>
           </ul>
         </li>
 			</ul>
@@ -42,9 +41,7 @@
 			echo form_close();
 			?>
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid -->
 </nav>
 
 

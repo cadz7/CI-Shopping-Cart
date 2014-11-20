@@ -1,12 +1,22 @@
 <h2>Product Table</h2>
+<style>
+	input { display: block;}
+	a {
+		color: white;
+	}
+	a:hover {
+		color: white;
+	}
+	tr:hover {
+		background: rgb(74, 118, 168) !important;
+	}
+</style>
 <?php 
 		echo "<p>" . anchor('admin/addProduct','Add New') . "</p>";
-		//echo anchor('admin/addProduct','Add New');
 ?>
 <table class="table table-hover">
 
 <?php  
-		//echo "<table>";
 		echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Photo</th><th>Operations</th><th></th><th></th></tr>";
 		
 		foreach ($products as $product) {

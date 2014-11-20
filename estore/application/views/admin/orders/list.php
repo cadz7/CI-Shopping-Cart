@@ -1,4 +1,16 @@
 <h2>Order List</h2>
+<style>
+	input { display: block;}
+	a {
+		color: white;
+	}
+	a:hover {
+		color: white;
+	}
+	tr:hover {
+		background: rgb(74, 118, 168) !important;
+	}
+</style>
 
 <table class="table table-hover">
 
@@ -18,7 +30,7 @@
  			echo "<td>" . $order['creditcard_year'] . "</td>";
 
  			$id = $order['id'];
- 			echo "<td>" . anchor("admin/deleteOrder/$id",'Delete',"onClick='return confirm(\"Do you want to delete this entry?\");'") . "</td>";
+ 			echo "<td>" . anchor("admin/deleteOrder/$id",'Delete',"onClick='return confirm(\"Do you wish to delete this entry?\");'") . "</td>";
 				
 			echo "</tr>";
 		}

@@ -9,7 +9,6 @@ class Store extends CI_Controller {
      
      
     function __construct() {
-    		// Call the Controller constructor
 	    	parent::__construct();
 	    	
 	    	
@@ -56,24 +55,18 @@ class Store extends CI_Controller {
 			
 			$this->product_model->insert($product);
 
-			//Then we redirect to the index page again
-			//redirect('store/index', 'refresh');
 			redirect('admin/editProduct');
 			
 		}
 		else {
 			if ( !$fileUploadSuccess) {
 				$data['fileerror'] = $this->upload->display_errors();
-				//$data['title'] = 'Add Products';
 				$data['taskbarLinkId'] = 'admin';
 				$data['addProduct'] = 'True';
 				$this->load->view('admin/admin_template.php',$data);
-				//$this->load->view('store/index');
 				return;
 			}
 			
-			//$this->load->view('product/newForm.php');
-			//$data['title'] = 'Add Products';
 			$data['taskbarLinkId'] = 'admin';
 			$data['addProduct'] = 'True';
 			$this->load->view('admin/admin_template.php',$data);
@@ -109,8 +102,6 @@ class Store extends CI_Controller {
 			
 			$this->load->model('product_model');
 			$this->product_model->update($product);
-			//Then we redirect to the index page again
-			//redirect('store/index', 'refresh');
 			redirect('admin/editProduct');
 		}
 		else {
@@ -129,9 +120,6 @@ class Store extends CI_Controller {
 		
 		if (isset($id)) 
 			$this->product_model->delete($id);
-		
-		//Then we redirect to the index page again
-		//redirect('store/index', 'refresh');
 		redirect('admin/editProduct');
 		
 	}

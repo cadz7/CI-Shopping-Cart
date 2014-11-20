@@ -12,11 +12,11 @@ function emailHelper($obj, $user_email, $order_id) {
 	
 	$obj->email->initialize($config);
 	
-	//Load the email models
+	/* Load the email models */
 	$obj->load->library('email');
 	$obj->email->set_newline("\r\n");
 	
-	//Get the email content
+	/* Get the email content */
 	$obj->load->model('order_model');
 	$obj->load->model('product_model');
 	$orders = $obj->order_model->get($order_id);
@@ -36,7 +36,7 @@ function emailHelper($obj, $user_email, $order_id) {
 	$email = $obj->load->view('email/email.php',$data,TRUE);
 	
 	//Send the emails
-	$obj->email->from('admin@baseballcards.com', 'Baseball Card Administrator'); 
+	$obj->email->from('support@baseballcards.com', 'Baseball Card Support'); 
 	$obj->email->to($user_email);
 	$obj->email->subject('Order Confirmation');
 	$obj->email->message($email);		

@@ -8,6 +8,11 @@ Class Order_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	/* Delete a particular order item.	*/
+	function delete($id) {
+		return $this->db->delete("orders",array('id' => $id ));
+	}
+
 	/*	Fetch all orders from orders table in DB 	*/
 	function getAll()
 	{
@@ -22,11 +27,7 @@ Class Order_model extends CI_Model {
 		return $query->result_array('Order');
 	}
 	
-	function delete($id) {
-		return $this->db->delete("orders",array('id' => $id ));
-	}
-	
-	
+	/*	Insert an order into DB  */
 	function insert_order($userId, $creditCardNumber, $creditCardMonth, $creditCardYear, $total, $shoppingCart) {
 
 		/*	Generating time and date 	*/
@@ -45,15 +46,15 @@ Class Order_model extends CI_Model {
 		
 		/*	Fetching order_id of newely created order  */
 		$query = $this->db->get_where("orders",array('order_date' => $mysqlDate, 'order_time' => $mysqlTime));
-		$order_id_array = $query->result_array();
-		$order_id = $order_id[0]['id'];
+		$order_id_arr = $query->result_array();
+		$order_id = $order_id_arr [0]['id'];
 		
 		/*	Inserting new items into order_items from shopping cart.  */
 		foreach ($shoppingCart as $item) {
 			$this->db->insert("order_items", array(
-					'order_id' => $order_id,
-					'product_id' => $item['id'],
-					'quantity' => $item['quantity'])
+			'order_id' => $order_id,
+			'product_id' => $item['id'],
+			'quantity' => $item['quantity'])
 			);
 		}
 		return $order_id;

@@ -1,10 +1,18 @@
-<h2>User List</h2>
-<?php
-?>
+<h2>Users</h2>
 <table class="table table-hover">
-
+<style>
+	input { display: block;}
+	a {
+		color: white;
+	}
+	a:hover {
+		color: white;
+	}
+	tr:hover {
+		background: rgb(74, 118, 168) !important;
+	}
+</style>
 <?php  
-		//echo "<table>";
 		echo "<tr><th>User ID</th><th>First Name</th><th>Last Name</th><th>User Name</th>";
 		echo "<th>Password</th><th>Email</th><th>Delete</th></tr>";
 		

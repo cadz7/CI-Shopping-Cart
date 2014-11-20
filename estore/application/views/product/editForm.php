@@ -2,6 +2,15 @@
 
 <style>
 	input { display: block;}
+	a {
+		color: white;
+	}
+	a:hover {
+		color: white;
+	}
+	tr:hover {
+		background: rgb(74, 118, 168) !important;
+	}
 	
 </style>
 
