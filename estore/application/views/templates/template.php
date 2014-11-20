@@ -21,8 +21,8 @@
 $(document).ready(function(){
 	//Does shoppingCart exist in cookies
 	var shoppingCart =  getCookie('shoppingCart');
-	
-	// Determine which items are in shopping cart and change 
+
+	// Determine which items are in shopping cart and change
 	// their button class
 	if (shoppingCart) {
 		shoppingCart = JSON.parse(shoppingCart);
@@ -41,7 +41,7 @@ $(document).ready(function(){
 
 	// set badge on shopping cart link to number of types of card in cart
 	$('#shoppingcart').find('.badge').html(shoppingCart.length);
-	
+
 	$('.thumbnail').find('button').click(function() {
 
 		// Add card to cart by getting shopping cart adding card id to cart and then adding the cart
@@ -61,7 +61,7 @@ $(document).ready(function(){
 			$('#shoppingcart').find('.badge').html(shoppingCart.length);
 		}
 
-		// Remove card from cart by getting shopping cart finding card with matching id and removing 
+		// Remove card from cart by getting shopping cart finding card with matching id and removing
 		// the card from the cart, then adding the cart to cookies
 		else {
 			for( var i = 0; i < shoppingCart.length; i++) {
@@ -87,18 +87,19 @@ $(document).ready(function(){
 });
 
 </script>
-	
+
 	<?php if (isset($taskbar)) {
 		$this->load->view($taskbar);
 	}?>
 	<div class="container-all">
-	<?php 
-	if (isset($message)) { 
+	<?php
+	if (isset($message)) {
 	?>
 	<div class="alert alert-danger" role="alert"><?= $message ?></div>
 	<?php
 	}
 	?>
+	
 	<p>
 	<?php $this->load->view('templates/template_main.php')?>
 	</div>
