@@ -14,6 +14,21 @@
 </head>
 <body>
 <h2>Order Confirmation</h2>
-	<!-- Implement email here -->
+	<div id="header">
+		Thank you for shopping with our store
+	</div>
+	<div id="content">
+		<?php
+			foreach($allproducts as $product) {
+				echo $product['name'],"   ", $product['price'],"$<br>";
+			}
+		?>
+	</div>
+	<hr>
+	<div id=total>
+		<?php
+			echo "Your total: ", $orders[0]['total'];
+		?>
+	</div>
 </body>
 </html>
