@@ -3,12 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Baseball Cards Store</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel = "stylesheet" href="<?= base_url()?>css/template.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -18,12 +13,11 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){
-	//Does shoppingCart exist in cookies
+$(document).ready(function() {
+	/* Check if items in cookies exist */
 	var shoppingCart =  getCookie('shoppingCart');
 
-	// Determine which items are in shopping cart and change
-	// their button class
+	/* If the items exist, display them in shopping cart. */
 	if (shoppingCart) {
 		shoppingCart = JSON.parse(shoppingCart);
 		$('.thumbnail').each(function() {
@@ -39,13 +33,12 @@ $(document).ready(function(){
 		shoppingCart = [];
 	}
 
-	// set badge on shopping cart link to number of types of card in cart
+	/*  Set Counter of shoppping cart items	*/
 	$('#shoppingcart').find('.badge').html(shoppingCart.length);
 
 	$('.thumbnail').find('button').click(function() {
 
-		// Add card to cart by getting shopping cart adding card id to cart and then adding the cart
-		// to cookies
+		/* Add the card to cookies based on matching id */
 		if($(this).attr('class') == 'btn btn-xs btn-primary btn-group-sm') {
 			var shoppingCartItem = 	{
 					id: $( this ).parent().parent().find('#shopping-cart-product-id').html(),
@@ -61,8 +54,7 @@ $(document).ready(function(){
 			$('#shoppingcart').find('.badge').html(shoppingCart.length);
 		}
 
-		// Remove card from cart by getting shopping cart finding card with matching id and removing
-		// the card from the cart, then adding the cart to cookies
+		/* Remove the card from cookies based on matching id */
 		else {
 			for( var i = 0; i < shoppingCart.length; i++) {
 				if (shoppingCart[i].id == parseInt($( this ).parent().parent().find('#shopping-cart-product-id').html())) {

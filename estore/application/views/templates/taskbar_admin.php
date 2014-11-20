@@ -36,7 +36,7 @@
 			echo form_open("accounts/logout", $attributes);
 			?>
 			<?php 
-			$submit_type = array('type'=>'submit', 'class'=>'btn btn-default', 'value'=>'Logout');
+			$submit_type = array('type'=>'submit', 'class'=>'btn btn-default btn-logout', 'value'=>'Logout');
 			echo form_submit($submit_type);
 			echo form_close();
 			?>

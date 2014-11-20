@@ -105,7 +105,6 @@ $(document).ready(function(){
 	    cartTable += '<li class="list-group-item disabled"><b>Total Price</b><div class="cartprice">'
 		cartTable += getTotal(shoppingCart) + '</div></li></ul></td>';
 		cartTable +=	'<td></td><td><input id="updateQuantity" class="btn btn-primary cart" type="submit" value="Update Cart"></input></td>';
-		cartTable +=	'<td></td><td><input class="btn btn-primary cart" type="submit" onclick="window.print()" value="Print Receipt"></input></td>';
 
 	    cartTable += '</tr>';
 		return cartTable;

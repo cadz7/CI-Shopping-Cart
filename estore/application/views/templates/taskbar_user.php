@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -14,7 +13,6 @@
 			</div>
 		</div>
 
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div id="navbar"
 			class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -26,14 +24,12 @@
 			echo form_open("accounts/logout", $attributes);
 			?>
 			<?php 
-			$submit_type = array('type'=>'submit', 'class'=>'btn btn-default', 'value'=>'Logout');
+			$submit_type = array('type'=>'submit', 'class'=>'btn btn-default btn-logout', 'value'=>'Logout');
 			echo form_submit($submit_type);
 			echo form_close();
 			?>
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid -->
 </nav>
 
 

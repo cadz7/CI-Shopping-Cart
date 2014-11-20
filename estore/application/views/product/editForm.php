@@ -48,6 +48,16 @@
 </div>
 
 <?php
+	echo form_label('Photo');
+	
+	if(isset($fileerror))
+		echo $fileerror;	
+?>	
+<div class="form-group">
+	<input type="file" name="userfile" size="30"/>
+</div>	
+
+<?php
 	$attributes = array( 'name' => 'submit', 'class' => 'btn btn-default', 'value' => 'Save' );
 	//echo form_submit('submit', 'Save');
 	echo form_submit($attributes);
