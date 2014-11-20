@@ -95,7 +95,7 @@ $(document).ready(function(){
 			cartTable += 'oninvalid="setCustomValidity(\'Please enter a positive numeric value\')" ';
 			cartTable += 'onchange="try{setCustomValidity(\'\')}catch(e){}" ';
 			cartTable += 'required= "" value ="'+ htmlEncode(shoppingCart[i].quantity) +'">';
-			cartTable += '<div class="inventoryproductid">' + shoppingCart[i].id + '</div>';
+			cartTable += '<div id="cart-item-id">' + shoppingCart[i].id + '</div>';
 			cartTable += '</div>' + '</td>';
 		    cartTable += '<td><button type="button" class="btn btn-xs btn-danger item">' +
 	 		'Remove</button></td></tr>';
@@ -104,8 +104,9 @@ $(document).ready(function(){
 		cartTable += '<td></td><td colspan=2><ul class="list-group"><ul class="list-group">';
 	    cartTable += '<li class="list-group-item disabled"><b>Total Price</b><div class="cartprice">'
 		cartTable += getTotal(shoppingCart) + '</div></li></ul></td>';
-		cartTable +=	'<td></td><td><input id="cartbutton" class="btn btn-primary cart" type="submit" value="Update Cart"></input></td>';
+		cartTable +=	'<td></td><td><input id="updateQuantity" class="btn btn-primary cart" type="submit" value="Update Cart"></input></td>';
 		cartTable +=	'<td></td><td><input class="btn btn-primary cart" type="submit" onclick="window.print()" value="Print Receipt"></input></td>';
+
 	    cartTable += '</tr>';
 		return cartTable;
 	}
@@ -188,7 +189,7 @@ $(document).ready(function(){
 
 	 // Changes border color red for quantity field if it differs from original quantity value
 	 $('.form-control.quantity').change(function() {
-		item_id = $(this).parent().find('.inventoryproductid').html();
+		item_id = $(this).parent().find('#cart-item-id').html();
 		item_quantity = $(this).val();
 		if ($(this).val() != $(this).attr('value')) {
 			$(this).css('border-color', 'red');
@@ -200,11 +201,10 @@ $(document).ready(function(){
 		}
 	 });
 
-	 // Remove button clicked for item, hide row of item, remove it from cookies variable shopping
-	 // cart.
+	 /*	Remove 	*/
 	$('.btn.btn-xs.btn-danger.item').click(function() {
 		var row = $(this).parent().parent();
-		var id = row.find('.inventoryproductid').html();
+		var id = row.find('#cart-item-id').html();
 		removeFromCart(id);
 		row.hide();
 		$('#shoppingcart').find('.badge').html(shoppingCart.length);
@@ -216,7 +216,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#cartbutton').click(function() {
+	$('#updateQuantity').click(function() {
 		for (var i = 0; i < changedItems.length; i++) {
 			if (changedItems[i].quantity == 0) {
 				removeFromCart(changedItems[i].id);
@@ -224,7 +224,7 @@ $(document).ready(function(){
 			else {
 				changeQuantityInCart (changedItems[i].id, changedItems[i].quantity);
 			}
-			$('.inventoryproductid').each(function() {
+			$('#cart-item-id').each(function() {
 				var row = $(this).parent().parent().parent();
 				if ($(this).html() == changedItems[i].id) {
 					if (changedItems[i].quantity == 0) {
