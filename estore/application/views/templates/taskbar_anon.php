@@ -7,9 +7,9 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand"><b>Baseball Cards Shop</b></div> 
+			<div class="navbar-brand"><b>EStore</b></div> 
 			<div class="navbar-brand">
-			<img alt="Brand" class="img-responsive" src="<?= base_url(); ?>/images/glyphicons_311_baseball.png">
+			<img alt="Brand" class="img-responsive" src="http://simpleicon.com/wp-content/uploads/baseball.png" width="24" height="24">
 			</div>
 		</div>
 

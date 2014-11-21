@@ -5,7 +5,11 @@ function emailHelper($obj, $user_email, $order_id) {
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'baseballerstoreinfo@gmail.com', //Change the email account full name
+<<<<<<< HEAD
 			'smtp_pass' => 'TimHortons',                      //Change to email password
+=======
+			'smtp_pass' => 'TimHortons',                      //Change to email password                    //Change to email password
+>>>>>>> origin/Rick-branch
 			'mailtype'  => 'html',
 			'charset'   => 'iso-8859-1'
 	);

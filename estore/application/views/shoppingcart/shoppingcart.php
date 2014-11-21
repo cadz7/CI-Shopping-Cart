@@ -3,7 +3,7 @@ $(document).ready(function(){
 	/*	Get and Set cookies   */
 	var shoppingCart =  getCookie('shoppingCart');
 
-	/*	Creating cart array from JSON*/
+	/*	Creating cart array from JSON */
 	if (shoppingCart) {
 		shoppingCart = JSON.parse(shoppingCart);
 	}
@@ -46,6 +46,7 @@ $(document).ready(function(){
 				return
 			}
 		}
+		//Creating an item object with updated quantity value
 		var item = {
 			id: item_id,
 			quantity: item_quantity
@@ -53,6 +54,7 @@ $(document).ready(function(){
 		changedItems.push(item);
 	}
 
+	/*	Removing changed items	*/
 	function removeFromChanged (item_id) {
 		for (var i=0; i < changedItems.length; i++) {
 			if (changedItems[i].id == item_id) {
@@ -81,9 +83,10 @@ $(document).ready(function(){
 	}
 
 	function makeShoppingCartTable(shoppingCart) {
-		tablestr = "<th></th><th>Name</th><th>Price</th><th>Quantity</th><th></th>";
+		cartTable = "<th></th><th>Name</th><th>Price</th><th>Quantity</th><th></th>";
 		for (var i=0; i < shoppingCart.length; i++) {
 			price = parseFloat(shoppingCart[i].price);
+<<<<<<< HEAD
 			tablestr += "<tr><td><img class = 'cartphoto' src='" + "<?= base_url() ?>" +"images/product/";
 			tablestr += shoppingCart[i].photo + "'></td>";
 			tablestr += "<td>" + htmlEncode(shoppingCart[i].name) + "</td>";
@@ -96,35 +99,64 @@ $(document).ready(function(){
 			tablestr += '<div class="inventoryproductid">' + shoppingCart[i].id + '</div>';
 			tablestr += '</div>' + '</td>';
 		    tablestr += '<td><button type="button" class="btn btn-xs btn-danger item">' +
+=======
+			cartTable += "<tr><td><img class = 'cartphoto' src='" + "<?= base_url() ?>" +"images/product/";
+			cartTable += shoppingCart[i].photo + "'></td>";
+			cartTable += "<td>" + htmlEncode(shoppingCart[i].name) + "</td>";
+			cartTable += "<td>$" + price.toFixed(2) + "</td>";
+			cartTable += '<td> <div class="form-group">';
+			cartTable += '<input type="text" pattern="\\d+" class="form-control quantity" ';
+			cartTable += 'oninvalid="setCustomValidity(\'Please enter a positive numeric value\')" ';
+			cartTable += 'onchange="try{setCustomValidity(\'\')}catch(e){}" ';
+			cartTable += 'required= "" value ="'+ htmlEncode(shoppingCart[i].quantity) +'">';
+			cartTable += '<div id="cart-item-id">' + shoppingCart[i].id + '</div>';
+			cartTable += '</div>' + '</td>';
+		    cartTable += '<td><button type="button" class="btn btn-xs btn-danger item">' +
+>>>>>>> origin/Rick-branch
 	 		'Remove</button></td></tr>';
 		}
-		tablestr += '<tr>';
-		tablestr += '<td></td><td colspan=2><ul class="list-group"><ul class="list-group">';
-	    tablestr += '<li class="list-group-item disabled"><b>Total Price</b><div class="cartprice">'
-		tablestr += getTotal(shoppingCart) + '</div></li></ul></td>';
-		tablestr +=	'<td></td><td><input id="cartbutton" class="btn btn-primary cart" type="submit" value="Update Cart"></input></td>';
-	    tablestr += '</tr>';
-		return tablestr;
+		cartTable += '<tr>';
+		cartTable += '<td></td><td colspan=2><ul class="list-group"><ul class="list-group">';
+	    cartTable += '<li class="list-group-item disabled"><b>Total Price</b><div class="cartprice">'
+		cartTable += getTotal(shoppingCart) + '</div></li></ul></td>';
+		cartTable +=	'<td></td><td><input id="updateQuantity" class="btn btn-primary cart" type="submit" value="Update Cart"></input></td>';
+
+	    cartTable += '</tr>';
+		return cartTable;
 	}
 
 	function noItemsMsg() {
+<<<<<<< HEAD
 		$('.inventory').html('<div class="alert alert-info" role="alert"><h3>Hey, you forgot something!</h3>' +
 		'<p><b>Unfortunately, there are currently no items in your cart. Go back <a href="'+
 		'<?= base_url()?>' + '">here</a> and' +
 		' make a selection from the catalogue, and when you\'re ready to place an order, come back.</b></div>');
+=======
+		$('.inventory').html('<div class="alert alert-warning" role="alert"><h3>No items in the cart!</h3>' +
+		'<p><b>The cart is currently empty. Please click <a href="'+
+		'<?= base_url()?>' + '">here</a>' +
+		' and items to the cart.</b></div>');
+>>>>>>> origin/Rick-branch
 	}
 
 	if(shoppingCart[0] != undefined && shoppingCart[0].id != undefined) {
-		//Set up for inventory table
-		tableInteriorStr = makeShoppingCartTable(shoppingCart);
-		tableStr = '<form id="cartinventory" role="form">';
-		tableStr += '<div class="panel panel-default">';
-		tableStr += '<div class="panel-heading"><h3>Cart Inventory</h3></div>';
-		tableStr += '<table class="table cart">' + tableInteriorStr;
-		tableStr += '</table></div></form>';
-		$('.inventory').html(tableStr);
 
+<<<<<<< HEAD
 		//Set up for checkout form
+=======
+		//Markup for the Shopping Cart Table
+		tableMarkup = makeShoppingCartTable(shoppingCart);
+		cartTable = '<form id="shopping-cart" role="form">';
+		cartTable += '<div class="panel panel-default">';
+		cartTable += '<div class="panel-heading"><h3>Shopping Cart</h3></div>';
+		cartTable += '<table class="table cart">' + tableMarkup;
+		cartTable += '</table></div></form>';
+		$('.inventory').html(cartTable);
+
+
+		/*	=====  Code for Checkout Form ======	*/
+
+>>>>>>> origin/Rick-branch
 		checkoutForm = '<?php 	$attributes = array('role' => 'form');
 								echo form_open("orders/checkout", $attributes); ?>';
 		checkoutForm += '<div class="panel panel-default">';
@@ -133,7 +165,7 @@ $(document).ready(function(){
 		checkoutForm +=	'<label for="creditnumber">Credit Card Number</label>';
 		checkoutForm += '<?php
 				$creditcardnumber_type = array('type'=>'text', 'class'=>'form-control', 'pattern'=>'[0-9]{4}[-][0-9]{4}[-][0-9]{4}[-][0-9]{4}',
-				'oninvalid'=>"setCustomValidity(\'Please enter a credit card number with 16 digits\')",
+				'oninvalid'=>"setCustomValidity(\'Please enter your credit card number with 16 digits\')",
 				'onchange'=>"try{setCustomValidity(\'\')}catch(e){}",
 				'id'=>'creditnumber', 'name'=>'creditnumber', 'required'=>'', 'placeholder'=>'XXXX-XXXX-XXXX-XXXX');
 				echo form_input($creditcardnumber_type);
@@ -172,7 +204,7 @@ $(document).ready(function(){
 	}
 
 	// Prevents form submission for cartinventory but still preserves validation messages
-	$('#cartinventory').on( "submit", function( event ) {
+	$('#shopping-cart').on( "submit", function( event ) {
     	if ( this.checkValidity && !this.checkValidity() ) {
         	$( this ).find( ":invalid" ).first().focus();
         	event.preventDefault();
@@ -182,7 +214,7 @@ $(document).ready(function(){
 
 	 // Changes border color red for quantity field if it differs from original quantity value
 	 $('.form-control.quantity').change(function() {
-		item_id = $(this).parent().find('.inventoryproductid').html();
+		item_id = $(this).parent().find('#cart-item-id').html();
 		item_quantity = $(this).val();
 		if ($(this).val() != $(this).attr('value')) {
 			$(this).css('border-color', 'red');
@@ -194,11 +226,10 @@ $(document).ready(function(){
 		}
 	 });
 
-	 // Remove button clicked for item, hide row of item, remove it from cookies variable shopping
-	 // cart.
-	$('.btn.btn-xs.btn-success.item').click(function() {
+	 /*	Remove 	*/
+	$('.btn.btn-xs.btn-danger.item').click(function() {
 		var row = $(this).parent().parent();
-		var id = row.find('.inventoryproductid').html();
+		var id = row.find('#cart-item-id').html();
 		removeFromCart(id);
 		row.hide();
 		$('#shoppingcart').find('.badge').html(shoppingCart.length);
@@ -210,7 +241,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#cartbutton').click(function() {
+	$('#updateQuantity').click(function() {
 		for (var i = 0; i < changedItems.length; i++) {
 			if (changedItems[i].quantity == 0) {
 				removeFromCart(changedItems[i].id);
@@ -218,7 +249,7 @@ $(document).ready(function(){
 			else {
 				changeQuantityInCart (changedItems[i].id, changedItems[i].quantity);
 			}
-			$('.inventoryproductid').each(function() {
+			$('#cart-item-id').each(function() {
 				var row = $(this).parent().parent().parent();
 				if ($(this).html() == changedItems[i].id) {
 					if (changedItems[i].quantity == 0) {

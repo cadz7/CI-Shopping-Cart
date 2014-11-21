@@ -49,31 +49,30 @@ class Main extends CI_Controller {
     	$this->load->view('templates/template.php', $data);
     }
     
-	function index() {
-		$this->load->helper('checkuser');
-		$this->load->helper('shoppingcartcount');
-    	$data = checkUser($this);
-    	$data['title'] = "Catalogue";
-    	$data['description'] = "";
-    	$data['taskbarLinkId'] = 'catalogue';
-    	$data['contents'] = 'catalogue/list.php';
-    	$data['cartcount'] = shoppingCartCount($this->session->userdata('shoppingCart'));
+    function index() {
+        $this->load->helper('checkuser');
+        $this->load->helper('shoppingcartcount');
+        $data = checkUser($this);
+        $data['title'] = "Catalogue";
+        $data['description'] = "";
+        $data['taskbarLinkId'] = 'catalogue';
+        $data['contents'] = 'catalogue/list.php';
+        $data['cartcount'] = shoppingCartCount($this->session->userdata('shoppingCart'));
+            	
+        $this->load->model('product_model');
+        $products = $this->product_model->getAll();
+        $data['contentsdata']=$products;
+            	
+        if ($this->session->userdata('shoppingCart')) {
+            $shoppingCart = $this->session->userdata('shoppingCart');
+        }
+        else {
+            $shoppingCart = array();
+        }
+            	
+        $data['cartcontents'] = $shoppingCart; 
+        $this->load->view('templates/template.php', $data);
     	
-    	$this->load->model('product_model');
-    	$products = $this->product_model->getAll();
-    	$data['contentsdata']=$products;
-    	
-    	if ($this->session->userdata('shoppingCart')) {
-    		$shoppingCart = $this->session->userdata('shoppingCart');
-    	}
-    	else {
-    		$shoppingCart = array();
-    	}
-    	
-    	$data['cartcontents'] = $shoppingCart; 
-    	
-		$this->load->view('templates/template.php', $data);
-		
-	}
+    }
 	
 }

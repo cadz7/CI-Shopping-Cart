@@ -2,6 +2,15 @@
 
 <style>
 	input { display: block;}
+	a {
+		color: white;
+	}
+	a:hover {
+		color: white;
+	}
+	tr:hover {
+		background: rgb(74, 118, 168) !important;
+	}
 </style>
 
 <?php 
@@ -16,7 +25,7 @@
 	//echo form_input('name',set_value('name'),"required");
 	$name_input = array( 'name' => 'name', 'class' => 'form-control');
 	echo form_input($name_input , set_value('name'),"required");
-?>
+?>     
 </div>
 <div class="form-group">
 <?php
@@ -52,8 +61,6 @@ $attributes = array(
 		'value' => 'Create'
 );
 
-	//$attributes = array('class' => 'btn btn-default', 'id' => 'myform');
-	//echo form_submit('submit', 'Create', $attributes);
 	echo form_submit($attributes);
 	echo form_close();
 ?>	

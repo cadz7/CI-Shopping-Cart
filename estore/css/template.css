@@ -11,6 +11,10 @@
     	margin-left: auto;
 }
 
+.container-fluid {
+	box-shadow: 1px 1px 15px 0px;
+}
+
 .jumbotron {
 	background-color: rgb(74, 118, 168) !important;
 	color: white;
@@ -58,7 +62,7 @@
 	padding-left: 50px;
 }
 
-.inventoryproductid {
+#cart-item-id {
 	display: none;
 }
 
@@ -79,6 +83,24 @@
 	box-shadow: 1px 14px 45px rgba(0, 0, 0, 0.3) !important;
 }
 
+.btn-logout {
+	background: rgb(74, 118, 168) !important;
+	color: white;
+}
+
+.btn-logout:hover {
+	background: white !important;
+	color: rgb(74, 118, 168);
+}
+
+
+.navbar-brand {
+	color:rgb(74, 118, 168) !important;
+}
+
+.navbar-nav li a{
+	color: rgb(74, 118, 168) !important;
+}
 /*img:hover {
 	-ms-transform: scale(1.1); 
     	-webkit-transform: scale(1.1); 
